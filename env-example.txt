@@ -1,0 +1,10 @@
+# Telegram Bot API токен (получите у @BotFather)
+TELEGRAM_TOKEN=your_telegram_token_here
+
+# OpenRouter API ключ (получите на https://openrouter.ai/keys)
+OPENROUTER_API_KEY=your_openrouter_api_key_here
+
+# Настройки по умолчанию (опционально)
+DEFAULT_MODEL=google/gemini-2.0-pro-exp-02-05:free
+DEFAULT_TEMP=0.7
+DEFAULT_MAX_TOKENS=1000

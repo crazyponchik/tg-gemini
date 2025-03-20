@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  telegram-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: telegram-ai-bot
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+      - ./user_images:/app/user_images
+      - ./logs:/app/logs
+      - ./exports:/app/exports
+    env_file:
+      - .env
+    command: python main.py
+    networks:
+      - bot-network
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: telegram-ai-scheduler
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    env_file:
+      - .env
+    command: python scheduled_service.py
+    networks:
+      - bot-network
+    depends_on:
+      - telegram-bot
+
+networks:
+  bot-network:
+    driver: bridge
